@@ -5,9 +5,9 @@ div.container
     div.form-group
       = f.label :email, t(".email"), { class: "control-label" }
       = f.email_field :email, { autofocus: true, autocomplete: "email", class: "form-control" }
-    / div.form-group
-    /   = f.label :username, { class: "control-label" }
-    /   = f.text_field :username, autofocus: true, autocomplete: "username", :class => "form-control"
+    div.form-group
+      = f.label :username, t('.username'), { class: "control-label" }
+      = f.text_field :username, autofocus: true, autocomplete: "username", :class => "form-control"
     div.form-group
       = f.label :password, t(".password"), { class: "control-label" }
       - if @minimum_password_length
