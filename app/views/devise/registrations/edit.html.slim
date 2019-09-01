@@ -10,10 +10,6 @@ div.container
     .form-group
       = f.label :username, { class: "control-label" }
       = f.text_field :username, { autocomplete: "username", class: "form-control" }
-    .form-group
-      = f.label :date_of_birth, { class: "control-label" }
-      br/
-      = f.date_select :date_of_birth, {start_year: Date.today.year, end_year: Date.today.year - 100, class: "form-control" }
     - if current_user.admin?
       .form-group
         = f.label "Admin", class: "contol-label"
