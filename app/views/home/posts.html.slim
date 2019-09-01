@@ -1,0 +1,17 @@
+.container
+  .row
+    .col.my-auto
+      h1.my-4.text-center
+        | Ваши новости
+      - current_user.posts.each do |post|
+        .card.mb-4.my-auto
+          img.card-img-top alt=("Card image cap") src="http://placehold.it/750x300" /
+          .card-body
+            h2.card-title = post.title
+            p.card-text = post.body
+            = link_to "Редактировать", edit_post_path(post), { class: "btn btn-primary text-light" }
+            - if post.user == current_user or current_user.admin?
+              = link_to "Удалить", post, { data: { confirm: t('.are_you_sure') }, method: :delete, class: "btn btn-danger text-light ml-1" }
+          .card-footer.text-muted
+            | Новость создана 
+            = I18n.l(post.created_at, format: :long, locale: :'ru')

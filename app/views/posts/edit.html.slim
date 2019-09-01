@@ -1,8 +1,8 @@
-h1 Editing post
+div.container
+  h1.text-center = t(".header")
 
-== render 'form'
+  == render partial: 'form', locals: {submit_text: "Редактировать" }
 
-=> link_to 'Show', @post
-'|
-=< link_to 'Back', posts_path
+  / => link_to 'Show', @post
+  =< link_to 'Back', posts_path, { class: "btn btn-secondary text-light" }
 

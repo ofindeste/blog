@@ -6,13 +6,14 @@
         - @post.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :body
-    = f.text_area :body
-  .field
-    = f.label :user
-    = f.text_field :user
-  .actions = f.submit
+  div.row.text-center
+    = f.label :title, class: "col"
+  div.row
+    = f.text_field :title, class: "col"
+  div.row.text-center
+    = f.label :body, class: "col"
+  div.row
+    = f.text_area :body, { class: "col", style: "height: 280px;" }
+
+  div.text-center = f.submit submit_text, { class: "btn btn-primary m-2" }
+
