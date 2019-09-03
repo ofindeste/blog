@@ -1,7 +1,9 @@
+= javascript_pack_tag 'posts/edit', 'data-turbolinks-track': 'reload'
+
 div.container
   h1.text-center = t(".header")
 
-  == render partial: 'form', locals: {submit_text: "Редактировать" }
+    == render partial: 'form', locals: {submit_text: "Редактировать" }
 
   / => link_to 'Show', @post
   =< link_to 'Back', posts_path, { class: "btn btn-secondary text-light" }

@@ -1,19 +1,19 @@
-= form_for @post do |f|
+= form_for @post, :html => { id: 'post-from' } do |f|
   - if @post.errors.any?
     #error_explanation
       h2 = "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
       ul
         - @post.errors.full_messages.each do |message|
           li = message
-
-  div.row.text-center
-    = f.label :title, class: "col"
-  div.row
-    = f.text_field :title, class: "col"
-  div.row.text-center
-    = f.label :body, class: "col"
-  div.row
-    = f.text_area :body, { class: "col", style: "height: 280px;" }
+  div#post-edit
+    div.row.text-center
+      = f.label :title, class: "col"
+    div.row
+      = f.text_field :title, { id: "post-title", class: "col" }
+    div.row.text-center
+      = f.label :body, class: "col"
+    div.row
+      = f.text_area :body, { id: "post-body", class: "col", style: "height: 280px;" }
 
   div.text-center = f.submit submit_text, { class: "btn btn-primary m-2" }
 
