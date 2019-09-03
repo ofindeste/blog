@@ -63,6 +63,17 @@ ru:
     registrations:
       destroyed: До свидания! Ваша учетная запись удалена. Надеемся снова увидеть вас.
       edit:
+        email: Электронная почта
+        username: Имя пользователя
+        as_admin: Данный пользователь является администратором
+        password: Пароль
+        password_confirmation: Подтверждение
+        current_password: Текущий Пароль
+        digest:
+          message: Получать дайджест
+          daily: Ежедневно
+          weekly: Еженедельно
+          refuse: Отказаться
         are_you_sure: Вы уверены?
         cancel_my_account: Удалить учетную запись
         cancel_my_account_button: Удалить
