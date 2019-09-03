@@ -1,0 +1,18 @@
+.container
+  h1.col.text-center Редактирование пользователей
+  - @users.each do |user|
+    = form_for user, :html => { class: "form-horizontal bg-light m-1" } do |f|
+      .form-group
+        = f.label :username, "Имя пользователя: #{user.username}", { class: "control-label" }
+      .form-group
+        = f.label :username, "Электронная почта пользователя: #{user.email}", { class: "control-label" }
+      .form-group
+        = f.label :role, t(".role.message"), { class: "control-label" }
+        br /
+        = f.radio_button :role, :default
+        = f.label :role, t(".role.default"), { class: "mx-1" }
+        br /
+        = f.radio_button :role, :admin
+        = f.label :role, t(".role.admin"), { class: "mx-1" }
+      br /
+      = f.submit "Подтвердить"

@@ -1,0 +1,29 @@
+ru:
+  posts:
+    index:
+      header: Список новостей
+      title: Заголовок
+      body: Тело новости
+      author: Автор
+      show: Показать
+      edit: Редактировать
+      destroy: Удалить
+      are_you_sure: Вы уверены?
+    form:
+      author: Автор
+    new:
+      header: Создание новости
+      back: Назад
+    edit:
+      header: Редактирование новости
+    show:
+      title: Заголовок
+      body: Тело
+      author: Автор
+
+  users:
+    show:
+      role:
+        message: Роль пользователя
+        default: Пользователь
+        admin: Редактор
