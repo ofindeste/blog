@@ -3,8 +3,12 @@
 div.container
   h1.text-center = t(".header")
 
+  - if @post.edition_numbers > 5
+    h1.text-center Количество редакций превышено
+  - else
     == render partial: 'form', locals: {submit_text: "Редактировать" }
 
   / => link_to 'Show', @post
   =< link_to 'Back', posts_path, { class: "btn btn-secondary text-light" }
-
+  - if @post.edition_numbers <= 5
+    div#notificationss
