@@ -1,0 +1,7 @@
+.container
+  .row
+    h1.col.text-center Ваши дайджесты
+  - current_user.user_digests.each do |digest|
+    = link_to digest.post.title, post_path(digest.post)
+    = ("Дайджест добавлен: #{I18n.l(digest.created_at, format: :long, locale: :'ru')}. ")
+    br /

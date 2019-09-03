@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_01_145405) do
+ActiveRecord::Schema.define(version: 2019_09_02_092345) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
@@ -18,7 +18,17 @@ ActiveRecord::Schema.define(version: 2019_09_01_145405) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "edition_numbers"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "user_digests", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_user_digests_on_post_id"
+    t.index ["user_id"], name: "index_user_digests_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -31,9 +41,12 @@ ActiveRecord::Schema.define(version: 2019_09_01_145405) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
     t.integer "role"
+    t.integer "digest"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "posts", "users"
+  add_foreign_key "user_digests", "posts"
+  add_foreign_key "user_digests", "users"
 end

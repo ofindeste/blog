@@ -7,6 +7,7 @@ gem 'devise'
 gem 'slim-rails'
 gem 'bootstrap'
 gem 'rails-i18n'
+gem 'whenever', require: false
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
