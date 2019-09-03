@@ -1,24 +1,28 @@
-# README
+# Блог
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Установка
+После копирования репозитория необходимо выполнить команду:
+```
+    bundle install
+```
+Далее необходимо выполнить устнавку пакетов через yarn:
+```
+    yarn install --check-files
+```
+## Настройка базы данных
+Для работы с базой данных необходимо выполнить следующие команды:
+```
+    rails db:migrate
+    rails db:seed
+```
+## Настройка рассылки дайджестов
+Для рассылки необходимо обновить crontab
+```
+    whenever --update-crontab
+```
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Тестирование
+Для тестирования используется команда:
+```
+    rake test
+````
