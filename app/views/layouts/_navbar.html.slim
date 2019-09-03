@@ -6,17 +6,23 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
     ul.navbar-nav.mr-auto.mt-2.mt-lg-0
       li.nav-item
         = link_to "Новости", posts_path, { class: "nav-link" }
+      - if user_signed_in?
+        - if current_user.admin?
+          li.nav-item
+            = link_to "Добавить редакторов", user_path(current_user.id), { class: "nav-link" }
     - if !current_page?(new_user_session_path) and !current_page?(new_user_registration_path)
       ul.nav.navbar-nav.navbar-right
         - if current_user
           link.nav-item 
             = link_to "Создать новость", new_post_path, {class: "nav-link"}
           li.nav-item
-             = link_to "Ваши новости", user_posts_path(current_user.username), { class: "nav-link" }
+            = link_to "Ваши новости", user_posts_path(current_user.username), { class: "nav-link" }
           li.nav-item
-             = link_to current_user.username, edit_user_registration_path, { class: "nav-link" }
+            = link_to "Ваши дайджесты", user_digests_path(current_user.username), { class: "nav-link" }
           li.nav-item
-          = link_to "Выйти", destroy_user_session_path, { method: :delete, class: "nav-link" }
+            = link_to current_user.username, edit_user_registration_path, { class: "nav-link" }
+          li.nav-item
+            = link_to "Выйти", destroy_user_session_path, { method: :delete, class: "nav-link" }
         - else
           li.nav-item
           = link_to "Войти", new_user_session_path, { class: "nav-link" }
