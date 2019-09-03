@@ -15,10 +15,11 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
         - if current_user
           link.nav-item 
             = link_to "Создать новость", new_post_path, {class: "nav-link"}
-          li.nav-item
-            = link_to "Ваши новости", user_posts_path(current_user.username), { class: "nav-link" }
-          li.nav-item
-            = link_to "Ваши дайджесты", user_digests_path(current_user.username), { class: "nav-link" }
+          - if current_user.username != nil
+            li.nav-item
+              = link_to "Ваши новости", user_posts_path(current_user.username), { class: "nav-link" }
+            li.nav-item
+              = link_to "Ваши дайджесты", user_digests_path(current_user.username), { class: "nav-link" }
           li.nav-item
             = link_to current_user.username, edit_user_registration_path, { class: "nav-link" }
           li.nav-item
