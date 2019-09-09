@@ -7,6 +7,18 @@ namespace :blog_digest do
           digest = UserDigest.create(user: user, post: post)
           digest.save
         end
+        unread_count = 0
+        Post.where(user: user).each do |post|
+          Comment.where(post: post).each do |comment|
+            if comment.is_read == false
+              unread_count += 1
+            end
+          end
+        end
+        MessageCounter.where(user: user).each do |mc|
+          mc.destroy
+        end
+        MessageCounter.create(user: user, count: unread_count)
       end
     end
   end
@@ -18,6 +30,18 @@ namespace :blog_digest do
           digest = UserDigest.create(user: user, post: post)
           digest.save
         end
+        unread_count = 0
+        Post.where(user: user).each do |post|
+          Comment.where(post: post).each do |comment|
+            if comment.is_read == false
+              unread_count += 1
+            end
+          end
+        end
+        MessageCounter.where(user: user).each do |mc|
+          mc.destroy
+        end
+        MessageCounter.create(user: user, count: unread_count)
       end
     end
   end
