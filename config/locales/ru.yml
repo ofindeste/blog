@@ -20,6 +20,19 @@ ru:
       title: Заголовок
       body: Тело
       author: Автор
+      comments:
+        zero: "Комментариев нет"
+        one: "1 Комментарий"
+        few: "%{count} Комментария"
+        other: "%{count} Комментарев"
+
+  home:
+    digests:
+      comments:
+        zero: "нет новых комментариев"
+        one: "1 новый комментарий"
+        few: "%{count} новых комментария"
+        other: "%{count} новых комментарев"
 
   users:
     show:
