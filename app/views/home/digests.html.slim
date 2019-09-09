@@ -1,4 +1,11 @@
 .container
+  - counter = MessageCounter.where(user: current_user).first
+  .row
+    .col.text-center
+      p.text-muted
+      | У Вас после последней генерации дайджеста 
+      = t(".comments", :count => counter.count)
+
   .row
     h1.col.text-center Ваши дайджесты
   - current_user.user_digests.each do |digest|
