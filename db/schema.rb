@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_02_092345) do
+ActiveRecord::Schema.define(version: 2019_09_09_052453) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
+    t.text "text"
+    t.boolean "is_read"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "message_counters", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_message_counters_on_user_id"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
@@ -46,6 +65,9 @@ ActiveRecord::Schema.define(version: 2019_09_02_092345) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "message_counters", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "user_digests", "posts"
   add_foreign_key "user_digests", "users"
