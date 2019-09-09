@@ -1,15 +1,51 @@
-div.container
-  p#notice = notice
+= javascript_pack_tag 'posts/show', 'data-turbolinks-track': 'reload'
 
-  p
-    strong = ("#{t(".title")}:")
-    = @post.title
-  p
-    strong = ("#{t(".body")}:")
-    = @post.body
-  p
-    strong = ("#{t(".author")}:")
-    = @post.user.username
+.container
+  .row
+    .col
+      p#notice = notice
+  .row
+    .col.my-auto
+      .card.mb-4.my-auto
+        img.card-img-top alt=("Card image cap") src="http://placehold.it/750x300" /
+        .card-body
+          h2.card-title = @post.title
+          p.card-text = @post.body
+          - if user_signed_in?
+            - if @post.user == current_user or current_user.admin?
+              = link_to "Редактировать", edit_post_path(@post), { class: "btn btn-primary text-light" }
+
+              = link_to "Удалить", @post, { data: { confirm: t('.are_you_sure') }, method: :delete, class: "btn btn-danger text-light ml-1" }
+        .card-footer.text-muted
+          = ("Новость создана: #{I18n.l(@post.created_at, format: :long, locale: :'ru')}. ")
+.container
+  .row
+    .col
+      h1 Комментарии
+    .col
+      h4.float-right.text-muted = (t(".comments", :count => Comment.count))
+  - Comment.where(post: @post).each do |comment|
+    - if comment.post.user == current_user
+      - comment.is_read = true
+      - comment.save
+    .row
+      .col.mb-2
+        .card
+          .card-body
+            h3.card-title = ("Автор: #{comment.user.username}")
+            p.card-text = comment.text
+          .card-footer.text-muted
+            = ("Дата: #{I18n.l(comment.created_at, format: :long, locale: :'ru')}. ")
+            - if comment.is_read
+              | Комментарий был прочитан автором статьи
+
+  #comment-form
+    form name="comment" action=""
+      label for="comment" name="label" Добавить комментарий
+      br /
+      textarea.md-textarea.form-control name="comment" id="comment-text"
+      br /
+      input.btn.btn-primary.mb-2 type="submit" value="Отправить"
 
   => link_to 'Edit', edit_post_path(@post)
   '|

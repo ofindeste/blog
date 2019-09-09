@@ -12,6 +12,7 @@
             = link_to "Редактировать", edit_post_path(post), { class: "btn btn-primary text-light" }
             - if post.user == current_user or current_user.admin?
               = link_to "Удалить", post, { data: { confirm: t('.are_you_sure') }, method: :delete, class: "btn btn-danger text-light ml-1" }
+            = link_to "Комментарии", post_path(post), { class: "btn btn-primary text-light ml-1" }
           .card-footer.text-muted
             | Новость создана 
             = I18n.l(post.created_at, format: :long, locale: :'ru')

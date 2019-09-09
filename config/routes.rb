@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'posts#index'
   get ':username/posts' => 'home#posts', :as => :user_posts
   get ':username/digests' => 'home#digests', :as => :user_digests
+  post 'posts/:id/comment' => 'posts#add_comment', :as => :comment
   scope "/admin" do
     resources :users
   end

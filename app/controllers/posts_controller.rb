@@ -54,6 +54,15 @@ class PostsController < ApplicationController
     end
   end
 
+  # POST /posts/1/comment
+  def add_comment
+    post = Post.find_by(id: params[:id])
+    Comment.create(post: post,
+                   user: current_user,
+                   text: params[:text],
+                   is_read: (if post.user == current_user then true else false end))
+  end
+
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
